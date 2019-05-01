@@ -18,25 +18,10 @@ class TasksService implements ITasksService {
             'path' => $path
         ]);
     }
+
+    public function delete($id) {
+        Task::find($id)->delete();
+    }
 }
 
-/* class TasksService implements ITasksService {
-    private $books;
-    public function __construct() {
-        $this->books = [
-            'CLR via Phalanger',
-            'Pro Laravel.NET Core MVC 2',
-            'PHP# in deep'
-        ];
-    }
-
-    public function get(): array {
-        return $this->books;
-    }
-    public function find(int $id): string {
-        if (isset($this->books[$id]))
-            return $this->books[$id];
-        return null;
-    }
-} */
 ?>

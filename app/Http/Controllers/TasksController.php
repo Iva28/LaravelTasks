@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Abstractions\ITasksService;
 use App\Models\Task;
-use Storage;
+use Illuminate\Support\Facades\Storage;
+
 
 class TasksController extends Controller
 {
@@ -18,11 +19,6 @@ class TasksController extends Controller
         $tasks = $this->tasksService->get();
         return view('index')->with('tasks', $tasks);
     }
-
-    /* public function find($id) {
-        $task = $this->tasksService->find($id);
-        return view('details')->with('task', $task);
-    } */
 
     public function addFile(){
         return view('addTask');
@@ -37,20 +33,27 @@ class TasksController extends Controller
             // $fileName = basename($request->fileToUpload->getClientOriginalName(), '.'.$fileExt);
             $fileExt = request()->fileToUpload->getClientOriginalExtension();
             $file = $title.'_'.time().'.'.$fileExt;
-            $request->fileToUpload->storeAs('tasks', $file);
+            $request->fileToUpload->storeAs('public/tasks', $file);
         } else {
             $text = $request->input('taskText');
             $file = $title.'_'.time().'.txt';
-            Storage::put('tasks/'.$file, $text);
+            Storage::put('public/tasks/'.$file, $text);
         }
 
         $this->tasksService->add($title, $file);
         return back() ->with('success','You have successfully upload file');
     }
 
-    public function download($id)
-    {
+    public function download($id) {
         $task = Task::find($id);
-        return response()->download(storage_path("app\\tasks\\$task->path"));
+        return response()->download(storage_path("app\\public\\tasks\\$task->path"));
+    }
+
+    public function delete($id) {
+        $task = Task::find($id);
+        Storage::delete("public/tasks/$task->path");
+        $this->tasksService->delete($id);
+        return back();
+
     }
 }

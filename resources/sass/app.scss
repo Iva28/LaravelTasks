@@ -12,3 +12,71 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+.content {
+    text-align: -webkit-center;
+    padding: 20px;
+}
+
+input[type="file"] {
+    width: 187px;
+    margin-top: 5px;
+}
+
+textarea {
+    width: 300px;
+    height: 130px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 10px;
+    min-width: 300px;
+}
+
+th, td {
+    font-size: 20px;
+
+}
+
+caption {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+    caption-side: top;
+    text-align: center;
+    color:black;
+}
+
+.btn {
+    display:block;
+    width:130px;
+    height:45px;
+    color: white;
+    text-align:center;
+    text-decoration:none;
+    background-color: #007bff;
+    font-size:15px;
+    font-weight:bold;
+    margin-top:25px;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    &:hover {
+        color: white;
+        background-color: rgb(35,82,124);
+        text-decoration: none;
+    }
+}
+
+
+.add {
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+
+.radioBtns div{
+    width: 45px;
+}
